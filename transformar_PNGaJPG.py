@@ -1,11 +1,16 @@
 from PIL import Image
 import os
+from tkinter import Tk, filedialog
 
-input_folder = "ruta/a/tu/carpeta/de/imagenes"
-output_folder = "ruta/a/tu/carpeta/de/salida"
+def select_folder(prompt):
+    root = Tk()
+    root.withdraw()
+    folder_selected = filedialog.askdirectory(title=prompt)
+    root.destroy()
+    return folder_selected
 
-if not os.path.exists(output_folder):
-    os.makedirs(output_folder)
+input_folder = select_folder("Selecciona la carpeta de entrada")
+output_folder = select_folder("Selecciona la carpeta de salida")
 
 for filename in os.listdir(input_folder):
     if filename.endswith(".png"):
